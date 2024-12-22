@@ -1,14 +1,20 @@
+<!-- templates/blog.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog</title>
   </head>
   <body>
-    <h1>Blog Posts</h1>
-    <ul>
-      {{range .}}
-      <li><a href="/blog/{{.Slug}}">{{.Title}}</a></li>
-      {{end}}
-    </ul>
+    <h1>Blog</h1>
+    {{range .}}
+    <div class="blog-post">
+      <h2><a href="/blog/{{.Slug}}">{{.Title}}</a></h2>
+      <p>{{.MetaDescription}}</p>
+      <p><strong>Date:</strong> {{.Date}}</p>
+      <img src="{{.ImgSource}}" alt="{{.Title}}" />
+    </div>
+    {{end}}
   </body>
 </html>

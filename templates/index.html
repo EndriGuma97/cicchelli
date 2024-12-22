@@ -1364,6 +1364,46 @@
       </a>
       <!-- Back-to-top End -->
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const submitButton = form.querySelector(".button-wrap-case");
+
+        submitButton.addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          let isValid = true;
+          const inputs = form.querySelectorAll(
+            "input[required], textarea[required]"
+          );
+
+          // Check if all required fields are filled
+          inputs.forEach((input) => {
+            if (input.value.trim() === "") {
+              isValid = false;
+              input.classList.add("is-invalid"); // Optionally add a style to highlight empty fields
+            } else {
+              input.classList.remove("is-invalid");
+            }
+          });
+
+          if (isValid) {
+            // If all fields are filled, show the "Thank You" message
+            const thankYouMessage = document.createElement("div");
+            thankYouMessage.classList.add("thank-you-message");
+            thankYouMessage.innerHTML =
+              "<h3>Grazie per aver inviato il messaggio!</h3>";
+
+            form.innerHTML = ""; // Clear the form
+            form.appendChild(thankYouMessage);
+          } else {
+            // Optionally, you can display a message or style the form indicating missing fields
+            alert("Per favore, compila tutti i campi obbligatori.");
+          }
+        });
+      });
+    </script>
+
     <!-- Main Body End -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.placeholder.label.js"></script>
